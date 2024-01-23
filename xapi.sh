@@ -72,8 +72,11 @@ case $CHOICE in
 
 
     * )
-      echo "#################################"
-      echo "    Choose the correct number    "
-      echo "#################################"
+      if [ -z "$choice" ]; then
+          echo "No input provided. Exiting."
+      else
+          echo "Invalid choice. Please enter a valid number."
+      fi    
+
       ;;
 esac
