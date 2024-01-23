@@ -25,18 +25,8 @@ echo "8. Virtualization (QEmu/vBox Req. Xero Repo)."
 echo
 echo
 
-# Create a temporary file to store user input
-input_file=$(mktemp)
-
-# Read user input and store it in the temporary file
-read -s -p "Enter the number of your choice: " choice
-echo "$choice" > "$input_file"
-
-# Read user input from the temporary file
-choice=$(cat "$input_file")
-
-# Clean up the temporary file
-rm -f "$input_file"
+script -q -c 'read -s -p "Enter the number of your choice: " choice; echo $choice' /dev/null | {
+  read choice
 
 case $choice in
 
