@@ -26,7 +26,7 @@ echo
 echo "Type Your Selection. To Exit, just close Window."
 echo
 
-read -p CHOICE
+read -p CHOICE < /dev/tty
 
 case $CHOICE in
 
