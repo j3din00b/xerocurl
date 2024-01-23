@@ -24,8 +24,10 @@ echo "8. Virtualization (QEmu/vBox Req. Xero Repo)."
 echo
 echo
 
-script -q -c 'read -s -p "Enter the number of your choice: " choice; echo $choice' /dev/null | {
-  read choice
+if [ -f /tmp/choice.txt ]; then
+    # Read user choice from the file
+    choice=$(cat /tmp/choice.txt)
+    rm /tmp/choice.txt
 
 case $choice in
 
@@ -72,12 +74,10 @@ case $choice in
 
 
     * )
-      if [ -z "$choice" ]; then
-          echo "No input provided. Exiting."
-      else
-          echo "Invalid choice. Please enter a valid number."
-      fi    
+      echo "Invalid choice. Please enter a valid number." 
 
       ;;
   esac
-}
+else
+    echo "No input provided. Exiting."
+fi
