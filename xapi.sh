@@ -25,7 +25,7 @@ echo "8. Virtualization (QEmu/vBox Req. Xero Repo)."
 echo
 echo
 
-script -q -c 'read -p "Enter the number of your choice: " choice; echo $choice' /dev/null | {
+script -q -c 'read -s -p "Enter the number of your choice: " choice; echo $choice' /dev/null | {
   read choice
 
 case $choice in
