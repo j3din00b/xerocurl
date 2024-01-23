@@ -23,12 +23,11 @@ echo "6. Switch Shell To ZSH w/OMZ or Starship."
 echo "7. OBS-Studio and Plugins Installer w/V4l2."
 echo "8. Virtualization (QEmu/vBox Req. Xero Repo)."
 echo
-echo "Type Your Selection. To Exit, just close Window."
 echo
 
-read -p CHOICE < /dev/tty
+read -p "Type Your Selection. To Exit, just close Window." choice < /dev/tty
 
-case $CHOICE in
+case $choice in
 
     1 )
       echo
