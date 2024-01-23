@@ -6,4 +6,3 @@
 ##################################################################################################################
 clear
 cd /tmp/ && git clone https://github.com/DarkXero-dev/scripts && cd scripts && sh menu.sh
-rm -Rf /tmp/scripts/
