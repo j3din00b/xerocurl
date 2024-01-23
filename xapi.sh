@@ -1,5 +1,4 @@
 #!/bin/bash
-#set -e
 ##################################################################################################################
 # Written to be used on 64 bits computers
 # Author 	: 	DarkXero
@@ -81,3 +80,4 @@ case $choice in
 
       ;;
   esac
+}
