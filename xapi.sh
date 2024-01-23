@@ -80,5 +80,5 @@ case $choice in
       fi    
 
       ;;
-esac
+  esac
 }
