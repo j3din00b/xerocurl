@@ -25,8 +25,6 @@ echo
 echo "Type Your Selection. To Exit, just close Window."
 echo
 
-while :; do
-
 read -p CHOICE
 
 case $CHOICE in
@@ -79,4 +77,3 @@ case $CHOICE in
       echo "#################################"
       ;;
 esac
-done
