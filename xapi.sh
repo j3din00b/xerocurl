@@ -22,12 +22,8 @@ echo "6. Switch Shell To ZSH w/OMZ or Starship."
 echo "7. OBS-Studio and Plugins Installer w/V4l2."
 echo "8. Virtualization (QEmu/vBox Req. Xero Repo)."
 echo
-echo
 
-if [ -f /tmp/choice.txt ]; then
-    # Read user choice from the file
-    choice=$(cat /tmp/choice.txt)
-    rm /tmp/choice.txt
+read -p "Enter the number of your choice: " choice
 
 case $choice in
 
@@ -74,10 +70,12 @@ case $choice in
 
 
     * )
-      echo "Invalid choice. Please enter a valid number." 
+     if [ -z "$choice" ]; then
+            echo "No input provided. Exiting."
+        else
+            echo "You entered: $choice"
+            # Add your logic here based on the entered value
+        fi
 
       ;;
   esac
-else
-    echo "No input provided. Exiting."
-fi
