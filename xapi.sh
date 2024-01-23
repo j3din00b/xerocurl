@@ -27,7 +27,7 @@ echo
 
 while :; do
 
-read CHOICE
+read -p CHOICE
 
 case $CHOICE in
 
