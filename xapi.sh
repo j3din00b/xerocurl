@@ -25,7 +25,7 @@ echo "8. Virtualization (QEmu/vBox Req. Xero Repo)."
 echo
 echo
 
-read -p "Type Your Selection. To Exit, just close Window." choice < /dev/tty
+read -s -p "Type Your Selection. To Exit, just close Window." choice < /dev/tty
 
 case $choice in
 
