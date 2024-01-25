@@ -6,6 +6,9 @@ This is the repository that the setup curl scripts pulls down.
 
 ## Dear Contributors:
 
-Scripts go in: `contents/scripts`
-
-XeroCLI binary goes in: `contents`
+To update the contents of this repository, please do the following:
+```bash
+cd contents
+./update_contents.sh
+cd ..
+```
