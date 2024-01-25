@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git_url="https://github.com/XeroLinux/xerocurl"
+git_url="https://github.com/xerolinux/xerocurl"
 
 aur_helpers=("yay" "paru")
 
@@ -61,5 +61,5 @@ mkdir -p $HOME/.local/bin/xeroscripts > /dev/null 2>&1
 cd $HOME/.cache
 git clone ${git_url}.git xero-curl-contents > /dev/null 2>&1
 
-cp ./xero-curl-contents/xero-cli $HOME/.local/bin
-cp ./xero-curl-contents/scripts/* $HOME/.local/bin/xeroscripts
+cp ./xero-curl-contents/contents/xero-cli $HOME/.local/bin
+cp ./xero-curl-contents/contents/scripts/* $HOME/.local/bin/xeroscripts
