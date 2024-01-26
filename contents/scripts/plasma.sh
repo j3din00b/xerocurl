@@ -6,9 +6,7 @@
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
 tput setaf 3
-
 echo "#################################################"
-echo "#          The XeroLinux Rice Installer         #"
 echo "#      The Following Script is for KDE Only     #"
 echo "#################################################"
 tput sgr0
@@ -16,15 +14,15 @@ echo
 echo "Hello $USER, please select a rice to apply..."
 echo
 echo "#################################################"
-echo "#             Currently Unavailable.            #"
+echo "#          Rices Currently Unavailable.         #"
 echo "#      In Process Of Migrating to Plasma 6      #"
 echo "#################################################"
 echo
-echo "################# Ricing Tweaks #################"
+echo "################# Plasma Stuffs #################"
 echo
-echo "r. Reset config back to Pure Vanilla KDE."
-echo "m. Apply AppMenu Meta-Key Fix (For KDE-Plasma Only)."
-echo "w. Apply xWayland Screen/Window Sharing Fix (xWaylandVideoBridge)."
+echo "p. Install missing Plasma Packages."
+echo "m. Apply AppMenu Meta-Key Fix (Kwin)."
+echo "w. Apply xWayland Screen/Window Sharing Fix."
 echo
 echo "Type Your Selection. To Exit, just close Window."
 echo
@@ -35,36 +33,18 @@ read CHOICE
 
 case $CHOICE in
 
-    r )
+    p )
       echo
-      echo "#################################################"
-      echo "#            Resetting to Vanilla KDE           #"
-      echo "#                                               #"
-      echo "#     Warning, will undo current settings !     #"
-      echo "# This will revert settings to Pure Vanilla KDE #"
-      echo "#################################################"
+	  sleep 2
+	  echo "Installing Missing Plasma Packages..."
+	  echo
+      sleep 3
+      $AUR_HELPER -S --noconfirm flatpak-kcm systemd-kcm kdeplasma-addons keditbookmarks kgpg kwalletmanager print-manager yakuake tesseract-data-eus dolphin-plugins gwenview kamera okular spectacle svgpart plasmatube dwayland egl-wayland qt6-wayland glfw-wayland lib32-wayland wayland-protocols kwayland-integration plasma-wayland-session plasma-wayland-protocols
       echo
-			sleep 6
-			cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && rm -Rf ~/.config/
-			sudo sed -i "s/GRUB_THEME/#GRUB_THEME/g" /etc/default/grub
-            sudo grub-mkconfig -o /boot/grub/grub.cfg
-			sleep 3
-			echo
-        # Prompt the user to reboot
-        tput setaf 4
-        read -p "Customization Restored. Reboot recommended. Reboot now? (y/n): " reboot_response
-        tput setaf 0
-         echo
-        # Check the user's response
-        if [[ $reboot_response == "y" || $reboot_response == "yes" ]]; then
-          sudo reboot
-        else
-          echo
-          tput setaf 4
-          echo "Please manually reboot your system to apply changes."
-          tput sgr0
-        fi
-        exit 0
+      sleep 2
+      echo "All done, please reboot for good measure !"
+	  sleep 3
+      clear && sh $0
 
       ;;
 
@@ -80,7 +60,7 @@ case $CHOICE in
       echo
       echo "All done, should work now !"
 	  sleep 3
-      clear && sh /usr/share/xerotool/scripts/xero_rices.sh
+      clear && sh $0
 
       ;;
 
@@ -95,7 +75,7 @@ case $CHOICE in
       sleep 2
       echo "All done, please reboot for good measure !"
 	  sleep 3
-      clear && sh /usr/share/xerotool/scripts/xero_rices.sh
+      clear && sh $0
 
       ;;
     

@@ -21,7 +21,7 @@ header_text="[33m\
 #                                                               #
 #                      !!! ATTENTION !!!                        #
 #                                                               #
-#    This Will Install GPU Drivers For Any ATI or AMD GPUs      #
+#          You will need Multilib Repo to be enabled !          #
 #                                                               #
 #           Carefully Select The Appropriate Drivers.           #
 #################################################################

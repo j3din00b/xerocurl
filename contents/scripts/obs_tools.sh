@@ -37,7 +37,7 @@ case $CHOICE in
       echo "#######################################"
       echo "                 Done !                "
       echo "#######################################"
-      clear && sh /usr/share/xerotool/scripts/obs.sh
+      clear && sh $0
       ;;
 
     2 )
@@ -51,7 +51,7 @@ case $CHOICE in
       echo "#######################################"
       echo "                 Done !                "
       echo "#######################################"
-      clear && sh /usr/share/xerotool/scripts/obs.sh
+      clear && sh $0
       ;;
 
 
@@ -63,7 +63,6 @@ case $CHOICE in
       sleep 3
       sudo pacman -S --noconfirm v4l2loopback-dkms
       sleep 3
-      # Create the systemd service file
       # Create or append to /etc/modules-load.d/v4l2loopback.conf
       echo "v4l2loopback" | sudo tee /etc/modules-load.d/v4l2loopback.conf > /dev/null
 
@@ -73,7 +72,7 @@ case $CHOICE in
       # Prompt user to reboot
       echo "Please reboot your system for changes to take effect."
       sleep 2
-      clear && sh /usr/share/xerotool/scripts/obs.sh
+      clear && sh $0
       ;;
 
 

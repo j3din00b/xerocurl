@@ -13,13 +13,16 @@ tput sgr0
 echo
 echo "Hello $USER, Please Select What To Do. (Pure Arch Only)."
 echo
-echo "############# Pacman Tweaks #############"
+echo "########## Buiding/Cache Tweaks. ##########"
 echo
-echo "m.  Enable Multilib Repo."
-echo "v.  Enable Colors/ILoveCandy."
-echo "d.  Enable Parallel Downloads."
 echo "t.  Enable multithread compilation."
-echo "p.  Enable pacman cache cleaning timer."
+echo "c.  Enable pacman cache cleaning timer."
+echo
+echo "########## GUI Package Managers ##########"
+echo
+echo "o. Install OctoPi GUI."
+echo "p. Install Pamac-All GUI."
+echo "s. Install PacSeek AUR TUI."
 echo
 echo "########## Key/Mirrorlist Fixes ##########"
 echo
@@ -35,64 +38,39 @@ read CHOICE
 
 case $CHOICE in
 
-    m )
-      echo
-      echo "###########################################"
-      echo "        Enabling multilib Repository       "
-      echo "###########################################"
-      sleep 3
-      sudo sed -i '/^\[multilib\]/,/Include = \/etc\/pacman\.d\/mirrorlist/ s/^#//' /etc/pacman.conf
-      sleep 3
-      echo "#######################################"
-      echo "                 Done !                "
-      echo "#######################################"
-            clear && sh /usr/share/xerotool/scripts/pacman_tools.sh
-      ;;
-
-    v )
-      echo
-      echo "###########################################"
-      echo "             Adding Some Colors            "
-      echo "###########################################"
-      sleep 3
-      sudo sed -i 's/^#Color$/Color/' /etc/pacman.conf
-      sudo sed -i 's/#ILoveCandy/ILoveCandy/' /etc/pacman.conf
-      sleep 3
-      echo "#######################################"
-      echo "                 Done !                "
-      echo "#######################################"
-            clear && sh /usr/share/xerotool/scripts/pacman_tools.sh
-      ;;
-
-    d )
-      echo
-      echo "############################################"
-      echo "         Enabling Parallel Downloads        "
-      echo "############################################"
-      sleep 3
-      sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
-      sleep 3
-      echo "#######################################"
-      echo "                 Done !                "
-      echo "#######################################"
-            clear && sh /usr/share/xerotool/scripts/pacman_tools.sh
-      ;;
-
     t )
       echo
       echo "###########################################"
       echo "      Enabling multithread compilation     "
       echo "###########################################"
       sleep 3
-      sudo sed -i 's/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j\$(nproc)\"/' /etc/makepkg.conf
+      echo
+      numberofcores=$(grep -c ^processor /proc/cpuinfo)
+
+      if [ $numberofcores -gt 1 ]
+      then
+        echo "You have " $numberofcores" cores."
+        echo "Changing the makeflags for "$numberofcores" cores."
+        sudo sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j'$(($numberofcores+1))'"/g' /etc/makepkg.conf;
+        echo
+        echo "Changing the compression settings for "$numberofcores" cores."
+        echo
+        sudo sed -i 's/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -z - --threads=0)/g' /etc/makepkg.conf
+        sudo sed -i 's/COMPRESSZST=(zstd -c -z -q -)/COMPRESSZST=(zstd -c -z -q - --threads=0)/g' /etc/makepkg.conf
+        sudo sed -i "s/PKGEXT='.pkg.tar.xz'/PKGEXT='.pkg.tar.zst'/g" /etc/makepkg.conf
+      else
+        echo
+        echo "No change."
+      fi
       sleep 3
+      echo
       echo "#######################################"
       echo "                 Done !                "
       echo "#######################################"
-            clear && sh /usr/share/xerotool/scripts/pacman_tools.sh
+            clear && sh $0
       ;;
 
-    p )
+    c )
       echo
       echo "##########################################"
       echo "          Enabling paccache timer         "
@@ -103,7 +81,49 @@ case $CHOICE in
       echo "#######################################"
       echo "                 Done !                "
       echo "#######################################"
-            clear && sh /usr/share/xerotool/scripts/pacman_tools.sh
+            clear && sh $0
+      ;;
+
+    o )
+      echo
+      echo "##########################################"
+      echo "             Installing Octopi            "
+      echo "##########################################"
+      sleep 3
+      $AUR_HELPER -S octopi alpm_octopi_utils octopi-notifier-noknotify
+      sleep 3
+      echo "#######################################"
+      echo "                 Done !                "
+      echo "#######################################"
+            clear && sh $0
+      ;;
+
+    p )
+      echo
+      echo "##########################################"
+      echo "            Installing Pamac-All          "
+      echo "##########################################"
+      sleep 3
+      $AUR_HELPER -S pamac-all pamac-cli libpamac-full
+      sleep 3
+      echo "#######################################"
+      echo "                 Done !                "
+      echo "#######################################"
+            clear && sh $0
+      ;;
+
+    s )
+      echo
+      echo "##########################################"
+      echo "          Installing Pacseek TUI          "
+      echo "##########################################"
+      sleep 3
+      $AUR_HELPER -S pacseek-bin
+      sleep 3
+      echo "#######################################"
+      echo "                 Done !                "
+      echo "#######################################"
+            clear && sh $0
       ;;
 
     1 )
@@ -139,7 +159,7 @@ case $CHOICE in
       echo "#######################################"
       echo "                 Done ! Try Update now & Report               "
       echo "#######################################"
-            clear && sh /usr/share/xerotool/scripts/pacman_tools.sh
+            clear && sh $0
       ;;
 
 
@@ -156,7 +176,7 @@ case $CHOICE in
       echo "#######################################"
       echo "                 Done ! Updating should go faster                "
       echo "#######################################"
-            clear && sh /usr/share/xerotool/scripts/pacman_tools.sh
+            clear && sh $0
       ;;
 
     * )

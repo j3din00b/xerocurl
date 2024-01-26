@@ -25,9 +25,6 @@ echo
 echo "5.  Mangohud (Native)."
 echo "6.  Goverlay (Flathub)."
 echo "7.  Protonup-qt (Flathub)."
-echo "8.  DualShock 4 Driver (AUR)."
-echo "9.  PS5 DualSense controller Driver (AUR)."
-echo "10. Xbox One Wireless Gamepad Driver (AUR)."
 echo
 echo "Type Your Selection. More tools available via our Package Installer."
 echo
@@ -46,13 +43,14 @@ case $CHOICE in
       echo
       sudo pacman -S --noconfirm steam
       sleep 3
+      echo
       echo "Applying Download Speed Enhancement Patch (Insecure but works)"
       echo -e "@nClientDownloadEnableHTTP2PlatformLinux 0\n@fDownloadRateImprovementToAddAnotherConnection 1.0" > ~/.steam/steam/steam_dev.cfg
       echo
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
+      clear && sh $0
 
       ;;
 
@@ -67,7 +65,7 @@ case $CHOICE in
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
+      clear && sh $0
 
       ;;
 
@@ -82,7 +80,7 @@ case $CHOICE in
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
+      clear && sh $0
 
       ;;
 
@@ -97,7 +95,7 @@ case $CHOICE in
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
+      clear && sh $0
 
       ;;
 
@@ -112,7 +110,7 @@ case $CHOICE in
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
+      clear && sh $0
 
       ;;
 
@@ -127,7 +125,7 @@ case $CHOICE in
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
+      clear && sh $0
 
       ;;
 
@@ -142,55 +140,10 @@ case $CHOICE in
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
-
-      ;;
-
-    8 )
-      echo
-      echo "#################################################"
-      echo "#          Installing DualShock 4 Driver        #"
-      echo "#################################################"
-      echo
-      $AUR_HELPER -S --noconfirm aur/ds4drv aur/game-devices-udev
-      echo
-      echo "#################################################"
-      echo "#        Done ! Returning to main menu..        #"
-      echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
-
-      ;;
-
-    9 )
-      echo
-      echo "#################################################"
-      echo "#  Installing PS-5 DualSense controller Driver  #"
-      echo "#################################################"
-      echo
-      $AUR_HELPER -S --noconfirm aur/dualsensectl
-      echo
-      echo "#################################################"
-      echo "#        Done ! Returning to main menu..        #"
-      echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
+      clear && sh $0
 
       ;;
     
-    10 )
-      echo
-      echo "#################################################"
-      echo "#  Installing Xbox One Wireless Gamepad Driver  #"
-      echo "#################################################"
-      echo
-      $AUR_HELPER -S --noconfirm aur/xpadneo-dkms
-      echo
-      echo "#################################################"
-      echo "#        Done ! Returning to main menu..        #"
-      echo "#################################################"
-      clear && sh /usr/share/xerotool/scripts/tkg.sh
-
-      ;;
-
     * )
       echo "#################################"
       echo "    Choose the correct number    "

@@ -15,9 +15,8 @@ echo "Hello $USER, what would you like to do today ?"
 echo
 echo "################## Distrobox & Docker Setup ##################"
 echo
-echo "d. Install/Configure Docker (Arch Repo)."
-echo "b. Install/Configure Distrobox (Arch Repo)."
-echo "v. Install/Configure Virt-Manager (XeroLinux Repo)."
+echo "d. Install/Configure Docker."
+echo "b. Install/Configure Distrobox."
 echo
 echo "################### Top 5 Distrobox Images ###################"
 echo "#### Both Options d and b are required for below to work. ####"
@@ -63,9 +62,9 @@ case $CHOICE in
         else
           echo
           tput setaf 2
-          echo "Please manually reboot your system before using Distrobox."
+          echo "Please manually reboot your system before using Docker."
           sleep 3
-          clear && sh /usr/share/xerotool/scripts/dbox.sh
+          clear && sh $0
           tput sgr0
         fi
 
@@ -79,25 +78,10 @@ case $CHOICE in
       sudo pacman -S --noconfirm distrobox
       sleep 3
       echo
-      clear && sh /usr/share/xerotool/scripts/dbox.sh
+      clear && sh $0
 
       ;;
-    
-    v )
-      echo
-      sleep 2
-      echo "Installing Virt-Manager..."
-      echo
-      sudo pacman -S --noconfirm virt-manager-meta
-      sleep 3
-      echo
-      echo "Please reboot, than run the following command in terminal to enable network"
-      echo "sudo virsh net-start default && sudo virsh net-autostart default"
-      sleep 6
-      clear && sh /usr/share/xerotool/scripts/dbox.sh
 
-      ;;
-    
     1 )
       echo
       sleep 2
@@ -106,7 +90,7 @@ case $CHOICE in
       distrobox create -i quay.io/toolbx-images/debian-toolbox:latest -n "Debian"
       sleep 10
       echo
-      clear && sh /usr/share/xerotool/scripts/dbox.sh
+      clear && sh $0
 
       ;;
 
@@ -118,7 +102,7 @@ case $CHOICE in
       distrobox create -i registry.fedoraproject.org/fedora-toolbox:latest -n "Fedora"
       sleep 10
       echo
-      clear && sh /usr/share/xerotool/scripts/dbox.sh
+      clear && sh $0
 
       ;;
 
@@ -130,7 +114,7 @@ case $CHOICE in
       distrobox create -i ghcr.io/void-linux/void-linux:latest-full-x86_64 -n "VoidLinux"
       sleep 10
       echo
-      clear && sh /usr/share/xerotool/scripts/dbox.sh
+      clear && sh $0
 
       ;;
     
@@ -142,7 +126,7 @@ case $CHOICE in
       distrobox create -i registry.opensuse.org/opensuse/tumbleweed:latest -n "OpenSuse"
       sleep 10
       echo
-      clear && sh /usr/share/xerotool/scripts/dbox.sh
+      clear && sh $0
 
       ;;
 
@@ -154,7 +138,7 @@ case $CHOICE in
       distrobox-upgrade --all
       sleep 3
       echo
-      clear && sh /usr/share/xerotool/scripts/dbox.sh
+      clear && sh $0
 
       ;;
 

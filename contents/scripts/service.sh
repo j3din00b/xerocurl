@@ -16,10 +16,11 @@ echo
 echo "1. Install & Activate Firewald."
 echo "2. Clear Pacman Cache (Free Space)."
 echo "3. Restart PipeWire/PipeWire-Pulse."
-echo "4. Unlock Pacman DB (In case of DB error)."
-echo "5. Activate Flatpak Theming (Required If used)."
-echo "6. Fix Grub & Install the Hooks (XeroLinux Repo)."
-echo "7. Activate OS-Prober to detect for Dual-Booting."
+echo "4. Launch Grub Theme Installer TUI."
+echo "5. Unlock Pacman DB (In case of DB error)."
+echo "6. Activate Flatpak Theming (Required If used)."
+echo "7. Activate OS-Prober for Dual-Booting with other OS."
+echo "8. Install/Activate Power Daemon for Laptops/Desktops."
 echo
 echo "Type Your Selection. To Exit, just close Window."
 echo
@@ -34,10 +35,11 @@ case $CHOICE in
       echo
 	  sleep 2
       sudo pacman -S --needed --noconfirm firewalld python-pyqt5 python-capng
+      echo
       sudo systemctl enable --now firewalld.service
       sleep 2
       echo
-      clear && sh /usr/share/xerotool/scripts/service.sh
+      clear && sh $0
 
       ;;
 
@@ -47,7 +49,7 @@ case $CHOICE in
       sudo pacman -Scc
       sleep 2
       echo
-      clear && sh /usr/share/xerotool/scripts/service.sh
+      clear && sh $0
 
       ;;
 
@@ -67,22 +69,31 @@ case $CHOICE in
       echo "        All Done, Try now       "
       echo "#################################"
 	  sleep 2
-      clear && sh /usr/share/xerotool/scripts/service.sh
+      clear && sh $0
 
       ;;
 
 
-    4 )
+    4)
+      echo
+	  sleep 2
+	  cd ~ && git clone https://github.com/xerolinux/xero-grubs && cd ~/xero-grubs/ && sudo sh install.sh
+	  sleep 2
+      clear && sh $0
+
+      ;;
+
+    5 )
       echo
 	  sleep 2
 	  sudo rm /var/lib/pacman/db.lck
 	  sleep 2
-      clear && sh /usr/share/xerotool/scripts/service.sh
+      clear && sh $0
 
       ;;
 
 
-    5 )
+    6 )
       echo
 	  sleep 2
 	  echo "#####################################"
@@ -98,25 +109,10 @@ case $CHOICE in
       echo "#     Flatpak Theming Activated     #"
       echo "#####################################"
 	  sleep 3
-      clear && sh /usr/share/xerotool/scripts/service.sh
+      clear && sh $0
 
       ;;
 
-    6 )
-      echo
-	  sleep 2
-	  echo "Fixing Grub, simply coz ArchInstall is doing it wrong..."
-	  echo
-	  sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch --recheck --force
-	  echo
-	  echo "Installing Hooks..."
-	  echo
-      sudo pacman -S grub-hooks xero-hooks
-      sleep 2
-      echo
-      clear && sh /usr/share/xerotool/scripts/service.sh
-
-      ;;
 
     7 )
       echo
@@ -125,6 +121,7 @@ case $CHOICE in
       echo "#   Activating OS-Prober in Grub.   #"
       echo "#####################################"
       sleep 3
+      sudo pacman -S --noconfirm os-prober
       sudo sed -i 's/#\s*GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' '/etc/default/grub'
       sudo os-prober
       sudo grub-mkconfig -o /boot/grub/grub.cfg
@@ -134,10 +131,24 @@ case $CHOICE in
       echo "#     Flatpak Theming Activated     #"
       echo "#####################################"
 	  sleep 3
-      clear && sh /usr/share/xerotool/scripts/service.sh
+      clear && sh $0
 
       ;;
         
+    8 )
+      echo
+	  sleep 2
+      sudo pacman -S --needed --noconfirm power-profiles-daemon
+      echo
+      sudo systemctl enable --now power-profiles-daemon
+      echo
+      sudo groupadd power && sudo usermod -aG power $(whoami)
+      sleep 2
+      echo
+      clear && sh $0
+
+      ;;
+    
     * )
       echo "#################################"
       echo "    Choose the correct number    "
