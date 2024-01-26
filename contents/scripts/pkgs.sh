@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 5
 echo "###################################################################################"
 echo "#                             Essential Pkg Installer                             #"
@@ -20,7 +21,7 @@ echo "d. Extra Networking/WiFi & VPN Tools."
 echo "e. Extra Useful System Tools (Recommended)."
 echo "f. Recommended tools from the AUR (Helper Required)."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -63,13 +64,17 @@ case $CHOICE in
 
     c )
       echo
-      echo "###########################################"
+      echo "########################################"
       echo "      Installing Input Essentials       "
-      echo "###########################################"
+      echo "########################################"
       echo
       echo "Please wait while packages install... "
-      sudo pacman -S --needed --noconfirm piper xf86-input-void xf86-input-evdev iio-sensor-proxy xf86-input-libinput xf86-input-synaptics xf86-input-elographics > /dev/null 2>&1
+      $AUR_HELPER -S --noconfirm piper xf86-input-void xf86-input-evdev iio-sensor-proxy xf86-input-libinput xf86-input-synaptics xf86-input-elographics libinput-gestures > /dev/null 2>&1
       sleep 3
+      echo "Enabling services..."
+      sudo gpasswd -a $USER input
+      libinput-gestures-setup start
+      libinput-gestures-setup autostart
       echo
       echo "#######################################"
       echo "                 Done !                "
@@ -112,12 +117,12 @@ case $CHOICE in
     f )
       echo
       echo "###########################################"
-      echo "      Installing Recommended tools from the AUR       "
+      echo "      Installing tools from the AUR       "
       echo "###########################################"
       echo
       echo "Please wait while packages install... "
       echo
-      $AUR_HELPER -S --noconfirm downgrade yt-dlg libadwaita-without-adwaita-git mkinitcpio-firmware hw-probe pkgstats alsi gestures libinput-gestures update-grub rate-mirrors-bin ocs-url
+      $AUR_HELPER -S --noconfirm downgrade yt-dlg libadwaita-without-adwaita-git mkinitcpio-firmware hw-probe pkgstats alsi gestures update-grub rate-mirrors-bin ocs-url
       sleep 3
       echo
       echo "#######################################"
@@ -126,6 +131,11 @@ case $CHOICE in
             clear && sh $0
       ;;
     
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
+      ;;
+
     * )
       echo "#################################"
       echo "    Choose the correct number    "
