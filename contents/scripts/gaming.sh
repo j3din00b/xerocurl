@@ -15,16 +15,18 @@ echo "Hello $USER, what would you like to install ?"
 echo
 echo "################# Game Launchers #################"
 echo
-echo "1. Steam (Native)."
-echo "2. Lutris (Native)."
-echo "3. Heroic (Flathub)."
-echo "4. Bottles (Flathub)."
+echo "s. Steam (Native)."
+echo "l. Lutris (Native)."
+echo "h. Heroic (Flathub)."
+echo "b. Bottles (Flathub)."
 echo
 echo "################### Game Tools ###################"
 echo
-echo "5.  Mangohud (Native)."
-echo "6.  Goverlay (Flathub)."
-echo "7.  Protonup-qt (Flathub)."
+echo "1.  Mangohud (Native)."
+echo "2.  Goverlay (Flathub)."
+echo "3.  Protonup-qt (Flathub)."
+echo "4.  Vulkan Compatibility Layer."
+echo "5.  Vulkan Compatibility Layer (nVidia)."
 echo
 echo "Type Your Selection. More tools available via our Package Installer."
 echo
@@ -35,7 +37,7 @@ read CHOICE
 
 case $CHOICE in
 
-    1 )
+    s )
       echo
       echo "#################################################"
       echo "#            Installing Steam Launcher          #"
@@ -58,7 +60,7 @@ case $CHOICE in
 
       ;;
 
-    2 )
+    l )
       echo
       echo "#################################################"
       echo "#           Installing Lutris Launcher          #"
@@ -73,7 +75,7 @@ case $CHOICE in
 
       ;;
 
-    3 )
+    h )
       echo
       echo "#################################################"
       echo "#           Installing Heroic Launcher          #"
@@ -88,7 +90,7 @@ case $CHOICE in
 
       ;;
 
-    4 )
+    b )
       echo
       echo "#################################################"
       echo "#          Installing Bottles Launcher          #"
@@ -103,7 +105,7 @@ case $CHOICE in
 
       ;;
 
-    5 )
+    1 )
       echo
       echo "#################################################"
       echo "#               Installing Mangohud             #"
@@ -118,7 +120,7 @@ case $CHOICE in
 
       ;;
 
-    6 )
+    2 )
       echo
       echo "#################################################"
       echo "#               Installing Goverlay             #"
@@ -133,7 +135,7 @@ case $CHOICE in
 
       ;;
 
-    7 )
+    3 )
       echo
       echo "#################################################"
       echo "#             Installing ProtonUp-QT            #"
@@ -147,7 +149,37 @@ case $CHOICE in
       clear && sh $0
 
       ;;
-    
+
+    4 )
+      echo
+      echo "#################################################"
+      echo "#               Installing DXVK-bin             #"
+      echo "#################################################"
+      echo
+      $AUR_HELPER dxvk-bin
+      echo
+      echo "#################################################"
+      echo "#        Done ! Returning to main menu..        #"
+      echo "#################################################"
+      clear && sh $0
+
+      ;;
+
+    5 )
+      echo
+      echo "#################################################"
+      echo "#                Installing nvdxvk              #"
+      echo "#################################################"
+      echo
+      $AUR_HELPER dxvk-nvapi-mingw
+      echo
+      echo "#################################################"
+      echo "#        Done ! Returning to main menu..        #"
+      echo "#################################################"
+      clear && sh $0
+
+      ;;
+
     * )
       echo "#################################"
       echo "    Choose the correct number    "
