@@ -47,6 +47,10 @@ case $CHOICE in
       echo "Applying Download Speed Enhancement Patch (Insecure but works)"
       echo -e "@nClientDownloadEnableHTTP2PlatformLinux 0\n@fDownloadRateImprovementToAddAnotherConnection 1.0" > ~/.steam/steam/steam_dev.cfg
       echo
+      echo "Applying vm-max-map-count patch for better performance..."
+      echo
+      echo "vm.max_map_count=2147483642" | sudo tee /etc/sysctl.d/99-sysctl.conf >/dev/null
+      echo
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
