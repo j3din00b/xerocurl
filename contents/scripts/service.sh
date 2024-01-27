@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 3
 echo "#################################################"
 echo "#                  Fixes/Tweaks                 #"
@@ -22,7 +23,7 @@ echo "6. Activate Flatpak Theming (Required If used)."
 echo "7. Activate OS-Prober for Dual-Booting with other OS."
 echo "8. Install/Activate Power Daemon for Laptops/Desktops."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -149,6 +150,11 @@ case $CHOICE in
 
       ;;
     
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
+      ;;
+
     * )
       echo "#################################"
       echo "    Choose the correct number    "

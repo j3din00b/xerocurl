@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 3
 echo "#################################################"
 echo "#             The Gaming Essentials.            #"
@@ -28,7 +29,7 @@ echo "3.  Protonup-qt (Flathub)."
 echo "4.  Vulkan Compatibility Layer."
 echo "5.  Vulkan Compatibility Layer (nVidia)."
 echo
-echo "Type Your Selection. More tools available via our Package Installer."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -177,6 +178,11 @@ case $CHOICE in
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
       clear && sh $0
+
+      ;;
+
+    q )
+      clear && exec ~/.local/bin/xero-cli
 
       ;;
 

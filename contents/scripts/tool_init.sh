@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 5
 echo "############################################################################"
 echo "#                           Initial System Setup                           #"
@@ -20,7 +21,7 @@ echo "b.  Install & Activate Bluetooth (Bluez)."
 echo "p.  Install Essential System Packages (Native & AUR)."
 echo "f.  Add & Activate Flathub Repositories (Req. for OBS)."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -83,6 +84,11 @@ case $CHOICE in
       echo "                 Done !                "
       echo "#######################################"
             clear && sh $0
+      ;;
+
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
       ;;
 
     * )

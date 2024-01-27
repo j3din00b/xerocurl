@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 3
 echo "##############################################################################"
 echo "#                               Device Drivers                               #"
@@ -20,7 +21,7 @@ echo "4. DualShock 4 Controller Driver (AUR)."
 echo "5. PS5 DualSense Controller Driver (AUR)."
 echo "6. Xbox One Wireless Gamepad Driver (AUR)."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -103,6 +104,11 @@ case $CHOICE in
 
       ;;
     
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
+      ;;
+
     * )
       echo "#################################"
       echo "    Choose the correct number    "

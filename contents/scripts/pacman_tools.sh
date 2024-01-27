@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 5
 echo "#########################################################################"
 echo "#                             Pacman Tweaks                             #"
@@ -29,7 +30,7 @@ echo
 echo "1. Fix Arch Mirrorlist, in case of issues."
 echo "2. Fix Arch GnuPG Keyring signature issues."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -177,6 +178,11 @@ case $CHOICE in
       echo "                 Done ! Updating should go faster                "
       echo "#######################################"
             clear && sh $0
+      ;;
+
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
       ;;
 
     * )

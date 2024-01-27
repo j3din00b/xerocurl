@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 3
 echo "##############################################################"
 echo "#        XeroLinux Distrobox/Docker/Virt-Manager Tool        #"
@@ -28,7 +29,7 @@ echo "4. Tumbleweed."
 echo
 echo "u. Update all Containers (Might take a while)."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -139,6 +140,11 @@ case $CHOICE in
       sleep 3
       echo
       clear && sh $0
+
+      ;;
+
+    q )
+      clear && exec ~/.local/bin/xero-cli
 
       ;;
 

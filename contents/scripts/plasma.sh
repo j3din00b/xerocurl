@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 3
 echo "#################################################"
 echo "#      The Following Script is for KDE Only     #"
@@ -24,7 +25,7 @@ echo "p. Install missing Plasma Packages."
 echo "m. Apply AppMenu Meta-Key Fix (Kwin)."
 echo "w. Apply xWayland Screen/Window Sharing Fix."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -79,6 +80,11 @@ case $CHOICE in
 
       ;;
     
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
+      ;;
+
     * )
       echo "#################################"
       echo "    Choose the correct number    "

@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 3
 echo "###############################################################################"
 echo "#                               OBS-Studio Tool                               #"
@@ -17,7 +18,7 @@ echo "1. Install OBS-Studo (Flathub)."
 echo "2. Install Essential OBS Plugins (Flathub)."
 echo "3. Activate v4l2loopback for OBS-VirtualCam."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -75,6 +76,11 @@ case $CHOICE in
       clear && sh $0
       ;;
 
+
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
+      ;;
 
     * )
       echo "#################################"

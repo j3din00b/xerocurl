@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 5
 echo "###########################################################################"
 echo "#                             Printer Drivers                             #"
@@ -25,7 +26,7 @@ echo "########## Epson Printers ###########"
 echo
 echo "e. Install Epson Drivers & Tools (AUR)."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -85,6 +86,11 @@ case $CHOICE in
       echo "                 Done !                "
       echo "#######################################"
             clear && sh $0
+      ;;
+
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
       ;;
 
     * )

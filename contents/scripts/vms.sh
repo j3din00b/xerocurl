@@ -5,6 +5,7 @@
 # Author 	: 	DarkXero
 # Website 	: 	http://xerolinux.xyz
 ##################################################################################################################
+clear
 tput setaf 1
 echo "####################################################################################"
 echo "#                               Virtualization Tools                               #"
@@ -16,7 +17,7 @@ echo
 echo "v. VirtualBox (Full)."
 echo "k. Virt-Manager (QEmu/KVM)."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -54,6 +55,11 @@ case $CHOICE in
 
       ;;
     
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
+      ;;
+
     * )
       echo "#################################"
       echo "    Choose the correct number    "
