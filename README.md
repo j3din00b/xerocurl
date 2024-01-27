@@ -18,3 +18,4 @@ cd contents
 ./update_contents.sh
 cd ..
 ```
+For ideas you might have please use the issues tab to suggest them. Will discuss them there. Thanks ;)
