@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+for i in 2 30; do
+    echo -en "\033]${i};XeroLinux Toolkit\007"
+done
+
+
 git_url="https://github.com/xerolinux/xerocurl"
 
 aur_helpers=("yay" "paru")
