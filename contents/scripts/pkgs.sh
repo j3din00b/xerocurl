@@ -20,7 +20,7 @@ echo "d. Extra Networking/WiFi & VPN Tools."
 echo "e. Extra Useful System Tools (Recommended)."
 echo "f. Recommended tools from the AUR (Helper Required)."
 echo
-echo "Type Your Selection. To Exit, just close Window."
+echo "Type Your Selection. Or type q to return to main menu."
 echo
 
 while :; do
@@ -37,6 +37,7 @@ case $CHOICE in
       echo
       echo "Please wait while packages install... "
       echo
+      sudo rm /usr/share/nvim/archlinux.nvim
       $AUR_HELPER -S nvchad-git
       sleep 3
       echo
@@ -131,6 +132,11 @@ case $CHOICE in
             clear && sh $0
       ;;
     
+    q )
+      clear && exec ~/.local/bin/xero-cli
+
+      ;;
+
     * )
       echo "#################################"
       echo "    Choose the correct number    "
