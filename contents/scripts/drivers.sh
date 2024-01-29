@@ -10,7 +10,9 @@ tput setaf 3
 echo "##############################################################################"
 echo "#                               Device Drivers                               #"
 echo "#                                                                            #"
-echo "#       nVidia Drivers support coming soon, currently work in progress       #"
+echo "#                   This only supports Open Source Drivers                   #"
+echo "#               for nVidia each Config is different. Research.               #"
+echo "#   Check this thread for info https://forum.xerolinux.xyz/thread-364.html   #"
 echo "##############################################################################"
 tput sgr0
 echo
