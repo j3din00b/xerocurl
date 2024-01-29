@@ -15,7 +15,7 @@ echo
 echo "Hello $USER, Please Select Which VM tool to Install (Req. XeroLinux Repo)."
 echo
 echo "v. VirtualBox (Full)."
-echo "k. Virt-Manager (QEmu/KVM)."
+echo "k. Virt-Manager (QEMU/KVM)."
 echo
 echo "Type Your Selection. Or type q to return to main menu."
 echo

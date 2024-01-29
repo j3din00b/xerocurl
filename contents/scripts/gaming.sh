@@ -26,7 +26,7 @@ echo
 echo "1.  Mangohud (Native)."
 echo "2.  Goverlay (Flathub)."
 echo "3.  Protonup-qt (Flathub)."
-echo "4.  Vulkan Compatibility Layer."
+echo "4.  Vulkan Compatibility Layer (AMD)."
 echo "5.  Vulkan Compatibility Layer (nVidia)."
 echo
 echo "Type Your Selection. Or type q to return to main menu."
@@ -50,10 +50,6 @@ case $CHOICE in
       echo "Applying Download Speed Enhancement Patch (Insecure but works)"
       echo -e "@nClientDownloadEnableHTTP2PlatformLinux 0\n@fDownloadRateImprovementToAddAnotherConnection 1.0" > ~/.steam/steam/steam_dev.cfg
       echo
-      echo "Applying vm-max-map-count patch for better performance..."
-      echo
-      echo "vm.max_map_count=2147483642" | sudo tee /etc/sysctl.d/99-sysctl.conf >/dev/null
-      echo
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
       echo "#################################################"
@@ -68,6 +64,10 @@ case $CHOICE in
       echo "#################################################"
       echo
       sudo pacman -S --noconfirm lutris wine-staging
+      echo
+      echo "Applying vm-max-map-count patch for better performance..."
+      echo
+      echo "vm.max_map_count=2147483642" | sudo tee /etc/sysctl.d/99-sysctl.conf >/dev/null
       echo
       echo "#################################################"
       echo "#        Done ! Returning to main menu..        #"
