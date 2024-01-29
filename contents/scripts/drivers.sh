@@ -9,17 +9,19 @@ clear
 tput setaf 3
 echo "##############################################################################"
 echo "#                               Device Drivers                               #"
+echo "#                                                                            #"
+echo "#       nVidia Drivers support coming soon, currently work in progress       #"
 echo "##############################################################################"
 tput sgr0
 echo
 echo "Hello $USER, Please Select What Drivers to install."
 echo
 echo "1. AMD/ATI FOSS GPU Drivers."
-echo "2. nVidia Proprietary GPU Drivers."
-echo "3. HP/Epson/Brother Printing Drivers."
-echo "4. DualShock 4 Controller Driver (AUR)."
-echo "5. PS5 DualSense Controller Driver (AUR)."
-echo "6. Xbox One Wireless Gamepad Driver (AUR)."
+#echo "2. nVidia Proprietary GPU Drivers."
+echo "2. HP/Epson/Brother Printing Drivers."
+echo "3. DualShock 4 Controller Driver (AUR)."
+echo "4. PS5 DualSense Controller Driver (AUR)."
+echo "5. Xbox One Wireless Gamepad Driver (AUR)."
 echo
 echo "Type Your Selection. Or type q to return to main menu."
 echo
@@ -39,17 +41,17 @@ case $CHOICE in
       clear && sh $0
       ;;
 
+#    2 )
+#      echo
+#      sleep 2
+#      clear && sh $SCRIPTS_PATH/nVidia_drivers.sh
+#      sleep 3
+#      echo
+#      clear && sh $0
+#      ;;
+
+
     2 )
-      echo
-      sleep 2
-      clear && sh $SCRIPTS_PATH/nVidia_drivers.sh
-      sleep 3
-      echo
-      clear && sh $0
-      ;;
-
-
-    3 )
       echo
       sleep 2
       clear && sh $SCRIPTS_PATH/printing.sh
@@ -59,7 +61,7 @@ case $CHOICE in
       clear && sh $0
       ;;
 
-    4 )
+    3 )
       echo
       echo "#################################################"
       echo "#          Installing DualShock 4 Driver        #"
@@ -74,7 +76,7 @@ case $CHOICE in
 
       ;;
 
-    5 )
+    4 )
       echo
       echo "#################################################"
       echo "#  Installing PS-5 DualSense controller Driver  #"
@@ -89,7 +91,7 @@ case $CHOICE in
 
       ;;
     
-    6 )
+    5 )
       echo
       echo "#################################################"
       echo "#  Installing Xbox One Wireless Gamepad Driver  #"
