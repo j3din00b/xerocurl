@@ -135,30 +135,30 @@ case $CHOICE in
       sleep 2
       echo
       echo "Step 1 - Deleting Existing Keys.. "
-      echo "#######################"
+      echo "##################################"
       echo
       sudo rm -r /etc/pacman.d/gnupg/*
       sleep 2
       echo
       echo "Step 2 - Populating Keys.."
-      echo "##################"
+      echo "##########################"
       echo
       sudo pacman-key --init && sudo pacman-key --populate
       sleep 2
       echo
       echo "Step 3 - Adding Ubuntu keyserver.."
-      echo "#########################"
+      echo "##################################"
       echo
       echo "keyserver hkp://keyserver.ubuntu.com:80" | sudo tee --append /etc/pacman.d/gnupg/gpg.conf
       echo
       echo "Step 4 - Updating ArchLinux Keyring.."
-      echo "###########################"
+      echo "#####################################"
       echo
       sudo pacman -Syy --noconfirm archlinux-keyring
       sleep 3
       echo
       echo "#######################################"
-      echo "                 Done ! Try Update now & Report               "
+      echo "    Done ! Try Update now & Report     "
       echo "#######################################"
             clear && sh $0
       ;;
@@ -167,7 +167,7 @@ case $CHOICE in
     2 )
       echo
       echo "##########################################"
-      echo "         Updating Mirrors To Fastest Ones        "
+      echo "     Updating Mirrors To Fastest Ones     "
       echo "##########################################"
 	  sleep 3
 	  echo
@@ -175,7 +175,7 @@ case $CHOICE in
 	  sleep 3
 	  echo
       echo "#######################################"
-      echo "                 Done ! Updating should go faster                "
+      echo "    Done ! Updating should go faster   "
       echo "#######################################"
             clear && sh $0
       ;;

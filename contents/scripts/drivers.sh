@@ -9,17 +9,12 @@ clear
 tput setaf 3
 echo "##############################################################################"
 echo "#                               Device Drivers                               #"
-echo "#                                                                            #"
-echo "#                   This only supports Open Source Drivers                   #"
-echo "#               for nVidia each Config is different. Research.               #"
-echo "#   Check this thread for info https://forum.xerolinux.xyz/thread-364.html   #"
 echo "##############################################################################"
 tput sgr0
 echo
 echo "Hello $USER, Please Select What Drivers to install."
 echo
-echo "1. AMD/ATI FOSS GPU Drivers."
-#echo "2. nVidia Proprietary GPU Drivers."
+echo "1. GPU Drivers (Forum Link)."
 echo "2. HP/Epson/Brother Printing Drivers."
 echo "3. DualShock 4 Controller Driver (AUR)."
 echo "4. PS5 DualSense Controller Driver (AUR)."
@@ -37,7 +32,7 @@ case $CHOICE in
     1 )
       echo
       sleep 2
-      clear && sh $SCRIPTS_PATH/amd_drivers.sh
+      xdg-open "https://forum.xerolinux.xyz/thread-364.html"  > /dev/null 2>&1
       sleep 3
       echo
       clear && sh $0
