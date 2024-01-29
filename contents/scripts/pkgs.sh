@@ -73,10 +73,13 @@ case $CHOICE in
       echo "Please wait while packages install... "
       echo
       $AUR_HELPER -S piper xf86-input-void xf86-input-evdev iio-sensor-proxy xf86-input-libinput xf86-input-synaptics xf86-input-elographics gestures libinput-gestures
+      echo
+      sudo gpasswd -a $USER input
+      libinput-gestures-setup autostart
       sleep 3
       echo
       echo "#######################################"
-      echo "                 Done !                "
+      echo "           Done Plz Reboot !           "
       echo "#######################################"
             clear && sh $0
       ;;
