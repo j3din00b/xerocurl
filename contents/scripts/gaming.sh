@@ -47,7 +47,7 @@ case $CHOICE in
       sudo pacman -S --noconfirm steam
       sleep 3
       echo
-      echo "Applying Download Speed Enhancement Patch (Insecure but works)"
+      echo "Applying Download Speed Enhancement Patch..."
       echo -e "@nClientDownloadEnableHTTP2PlatformLinux 0\n@fDownloadRateImprovementToAddAnotherConnection 1.0" > ~/.steam/steam/steam_dev.cfg
       echo
       echo "#################################################"

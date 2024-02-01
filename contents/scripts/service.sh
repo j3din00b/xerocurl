@@ -129,7 +129,7 @@ case $CHOICE in
       sleep 2
       echo
       echo "#####################################"
-      echo "#     Flatpak Theming Activated     #"
+      echo "#        Done! Reboot n Test        #"
       echo "#####################################"
 	  sleep 3
       clear && sh $0

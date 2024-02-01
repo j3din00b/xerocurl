@@ -8,21 +8,26 @@
 clear
 tput setaf 3
 echo "#################################################"
-echo "#      The Following Script is for KDE Only     #"
+echo "#              System Customization             #"
 echo "#################################################"
 tput sgr0
 echo
-echo "Hello $USER, please select a rice to apply..."
+echo "Hello $USER, please select what to do..."
+echo
+echo "################# Shell / Prompt #################"
+echo
+echo "z. Install ZSH+OMZ+Powerlevel10k."
+echo "s. Install and Apply Starship Bash Prompt."
+echo
+echo "################# Plasma Stuffs #################"
 echo
 echo "#################################################"
 echo "#          Rices Currently Unavailable.         #"
 echo "#      In Process Of Migrating to Plasma 6      #"
 echo "#################################################"
 echo
-echo "################# Plasma Stuffs #################"
-echo
 echo "p. Install missing Plasma Packages."
-echo "m. Apply AppMenu Meta-Key Fix (Kwin)."
+echo "m. Apply AppMenu Meta-Key Fix (Kwin/Rices)."
 echo "w. Apply xWayland Screen/Window Sharing Fix."
 echo
 echo "Type Your Selection. Or type q to return to main menu."
@@ -33,6 +38,36 @@ while :; do
 read CHOICE
 
 case $CHOICE in
+
+    z )
+      echo
+      echo "###########################################"
+      echo "     Installing ZSH+OMZ+Powerlevel10k      "
+      echo "###########################################"
+      sleep 3
+      sh $SCRIPTS_PATH/switch_to_zsh.sh
+      sleep 3
+      echo "#######################################"
+      echo "                 Done !                "
+      echo "#######################################"
+      clear && sh $0
+      ;;
+
+    s )
+      echo
+      echo "###########################################"
+      echo "              Starship Prompt              "
+      echo "###########################################"
+      sleep 3
+      sudo pacman -S starship
+      mkdir -p ~/.config/starship && cd ~/.config/starship
+      wget https://raw.githubusercontent.com/xerolinux/xero-fixes/main/conf/starship.toml
+      sleep 3
+      echo "#######################################"
+      echo "                 Done !                "
+      echo "#######################################"
+      clear && sh $0
+      ;;
 
     p )
       echo

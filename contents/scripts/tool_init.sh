@@ -16,10 +16,8 @@ echo "Hello $USER, Please Select What To Do."
 echo
 echo "############ Initial Setup Section ############"
 echo
-echo "x.  Activate XeroLinux Repo."
-echo "b.  Install & Activate Bluetooth (Bluez)."
-echo "p.  Install Essential System Packages (Native & AUR)."
-echo "f.  Add & Activate Flathub Repositories (Req. for OBS)."
+echo "x.  Activate XeroLinux Repo (Req. for some pkgs)."
+echo "f.  Activate Flathub Repositories (Req. for OBS)."
 echo
 echo "Type Your Selection. Or type q to return to main menu."
 echo
@@ -45,30 +43,6 @@ case $CHOICE in
       echo "                 Done !                "
       echo "#######################################"
             clear && sh $0
-      ;;
-
-    b )
-      echo
-	  sleep 2
-	  echo "##################################"
-      echo "       Installing Bluetooth       "
-      echo "##################################"
-      sleep 1.5
-      sudo pacman -S --needed --noconfirm bluez bluez-utils bluez-plugins bluez-hid2hci bluez-cups bluez-libs bluez-tools
-      sudo systemctl enable --now  bluetooth.service
-      sleep 1.5
-      echo
-      echo "#################################"
-      echo "        All Done, Try now       "
-      echo "#################################"
-	  sleep 2
-      clear && sh $0
-
-      ;;
-    
-    p )
-      echo
-      clear && sh $SCRIPTS_PATH/pkgs.sh
       ;;
 
     f )
