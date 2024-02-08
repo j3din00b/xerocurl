@@ -4,31 +4,21 @@ for i in 2 30; do
     echo -en "\033]${i};XeroLinux Toolkit\007"
 done
 
-
-git_url="https://github.com/xerolinux/xerocurl"
-
-aur_helpers=("yay" "paru")
-
-if [[ -d $HOME/.cache/xero-curl-contents ]]; then
-  cd $HOME/.cache/xero-curl-contents
-  git pull origin main
-  exit 0
-fi
-
-install_aur_helper () {
-  cd /tmp && git clone https://aur.archlinux.org/$1.git && cd /tmp/$1 && makepkg -rsi --noconfirm && cd /tmp && rm -rf /tmp/$1
-}
-
-install_yay () {
-  install_aur_helper yay-bin
-  yay -Y --devel --save && yay -Y --gendb
-}
-
-install_paru () {
-  install_aur_helper paru-bin
-  paru --gendb
-}
-
+##################################################################################################################
+# Written to be used on 64 bits computers
+# Author 	: 	DarkXero
+# Website 	: 	http://xerolinux.xyz
+##################################################################################################################
+clear
+tput setaf 5
+echo "██╗░░██╗███████╗██████╗░░█████╗░██╗░░░░░██╗███╗░░██╗██╗░░░██╗██╗░░██╗
+╚██╗██╔╝██╔════╝██╔══██╗██╔══██╗██║░░░░░██║████╗░██║██║░░░██║╚██╗██╔╝
+░╚███╔╝░█████╗░░██████╔╝██║░░██║██║░░░░░██║██╔██╗██║██║░░░██║░╚███╔╝░
+░██╔██╗░██╔══╝░░██╔══██╗██║░░██║██║░░░░░██║██║╚████║██║░░░██║░██╔██╗░
+██╔╝╚██╗███████╗██║░░██║╚█████╔╝███████╗██║██║░╚███║╚██████╔╝██╔╝╚██╗
+╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░╚════╝░╚══════╝╚═╝╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝"
+tput sgr0
+echo
 aur_helper="NONE"
 for i in ${aur_helpers[@]}; do
   if command -v $i; then
@@ -37,34 +27,55 @@ for i in ${aur_helpers[@]}; do
 done
 
 if [[ $aur_helper == "NONE" ]]; then
-  echo "Oh shoot! No AUR helper detected! Which one would you like to install?"
+  echo "Welcome to XeroLinux Arch Toolkit install script. No AUR Helper detected, please select the one you prefer."
+  echo "This will add the XeroLinux repository required to install the tool, AUR helper and much much more."
   echo ""
   echo "1 - Yay"
   echo "2 - Paru"
-  echo ""
-  echo "Invalid input will default to Yay."
   echo ""
   read -p "Choose number: " number_chosen
 
   case $number_chosen in
     1)
-      install_yay
+      echo
+      echo "###########################################"
+      echo "           You Have Selected YaY           "
+      echo "###########################################"
+      echo
+      echo "Adding XeroLinux Repository..."
+      echo
+      sudo cp /etc/pacman.conf /etc/pacman.conf.backup && \
+      echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
+      sleep 2
+      echo
+      echo "Installing YaY & Toolkit..."
+      echo
+      sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
+      echo
+      echo "Launching toolkit..."
+      clear && exec /usr/bin/xero-cli
     ;;
     2)
-      install_paru
+      echo
+      echo "###########################################"
+      echo "          You Have Selected Paru           "
+      echo "###########################################"
+      echo
+      echo "Adding XeroLinux Repository..."
+      echo
+      sudo cp /etc/pacman.conf /etc/pacman.conf.backup && \
+      echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
+      sleep 2
+      echo
+      echo "Installing Paru & Toolkit..."
+      echo
+      sudo pacman -Syy --noconfirm yay-bin xlapit-cli && paru --gendb
+      echo
+      echo "Launching toolkit..."
+      clear && exec /usr/bin/xero-cli
     ;;
     *)
-      install_yay
+      echo "Invalid option"
     ;;
   esac
 fi
-
-cd $HOME
-
-mkdir -p $HOME/.local/bin/xeroscripts > /dev/null 2>&1
-
-cd $HOME/.cache
-git clone ${git_url}.git xero-curl-contents > /dev/null 2>&1
-
-cp ./xero-curl-contents/contents/xero-cli $HOME/.local/bin
-cp ./xero-curl-contents/contents/scripts/* $HOME/.local/bin/xeroscripts
