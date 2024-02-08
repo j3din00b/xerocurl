@@ -19,10 +19,19 @@ echo "██╗░░██╗███████╗██████╗░�
 ╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░╚════╝░╚══════╝╚═╝╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝"
 tput sgr0
 echo
+
+aur_helpers=("yay" "paru")
+
 aur_helper="NONE"
+echo "Success AUR Helper found in " &&
+echo
 for i in ${aur_helpers[@]}; do
   if command -v $i; then
     aur_helper="$i"
+    echo
+    echo "Adding XeroLinux Repo & Installing Toolkit..."
+    echo
+    echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf && sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli
   fi
 done
 
