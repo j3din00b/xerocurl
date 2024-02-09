@@ -44,7 +44,7 @@ echo "Adding XeroLinux Repository..."
 echo
 echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
 echo
-echo "Installing Paru & Toolkit..."
+echo "Installing & Starting the Toolkit..."
 echo
 sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli
 ;;
