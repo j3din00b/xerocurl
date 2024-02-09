@@ -101,7 +101,7 @@ if [[ $aur_helper == "NONE" ]]; then
       echo
       echo "Installing Paru & Toolkit..."
       echo
-      sudo pacman -Syy --noconfirm yay-bin xlapit-cli && paru --gendb
+      sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
       echo
       echo "Launching toolkit..."
       clear && exec /usr/bin/xero-cli
