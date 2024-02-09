@@ -18,20 +18,48 @@ echo "# This will add the XeroLinux repository required to install the tool #"
 echo "#     AUR helper and more. Just close window if you do not agree.     #"
 echo "#######################################################################"
 tput sgr0
-echo
 
 aur_helpers=("yay" "paru")
-
+echo
 aur_helper="NONE"
 for i in ${aur_helpers[@]}; do
   if command -v $i; then
     aur_helper="$i"
     echo
-    echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf && sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli
+echo "AUR Helper detected, shall we proceed ?"
+echo ""
+echo "y. Yes Please."
+echo "n. No, thank you."
+echo ""
+echo "Type y or n to continue."
+echo ""
+
+read CHOICE
+
+case $CHOICE in
+
+y)
+echo
+echo "Adding XeroLinux Repository..."
+echo
+echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
+echo
+echo "Installing Paru & Toolkit..."
+echo
+sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli
+;;
+
+n)
+echo
+exit 0
+;;
+
+esac
   fi
 done
 
 if [[ $aur_helper == "NONE" ]]; then
+  echo
   echo "No AUR Helper detected, required by the toolkit."
   echo ""
   echo "1 - Yay + Toolkit"
