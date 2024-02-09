@@ -11,38 +11,33 @@ done
 ##################################################################################################################
 clear
 tput setaf 5
-echo "██╗░░██╗███████╗██████╗░░█████╗░██╗░░░░░██╗███╗░░██╗██╗░░░██╗██╗░░██╗
-╚██╗██╔╝██╔════╝██╔══██╗██╔══██╗██║░░░░░██║████╗░██║██║░░░██║╚██╗██╔╝
-░╚███╔╝░█████╗░░██████╔╝██║░░██║██║░░░░░██║██╔██╗██║██║░░░██║░╚███╔╝░
-░██╔██╗░██╔══╝░░██╔══██╗██║░░██║██║░░░░░██║██║╚████║██║░░░██║░██╔██╗░
-██╔╝╚██╗███████╗██║░░██║╚█████╔╝███████╗██║██║░╚███║╚██████╔╝██╔╝╚██╗
-╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░╚════╝░╚══════╝╚═╝╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝"
+echo "#######################################################################"
+echo "#          Welcome to XeroLinux Arch Toolkit install script.          #"
+echo "#                                                                     #"
+echo "# This will add the XeroLinux repository required to install the tool #"
+echo "#     AUR helper and more. Just close window if you do not agree.     #"
+echo "#######################################################################"
 tput sgr0
 echo
 
 aur_helpers=("yay" "paru")
 
 aur_helper="NONE"
-echo "Success AUR Helper found in " &&
-echo
 for i in ${aur_helpers[@]}; do
   if command -v $i; then
     aur_helper="$i"
-    echo
-    echo "Adding XeroLinux Repo & Installing Toolkit..."
     echo
     echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf && sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli
   fi
 done
 
 if [[ $aur_helper == "NONE" ]]; then
-  echo "Welcome to XeroLinux Arch Toolkit install script. No AUR Helper detected, please select the one you prefer."
-  echo "This will add the XeroLinux repository required to install the tool, AUR helper and much much more."
+  echo "No AUR Helper detected, required by the toolkit."
   echo ""
-  echo "1 - Yay"
-  echo "2 - Paru"
+  echo "1 - Yay + Toolkit"
+  echo "2 - Paru + Toolkit"
   echo ""
-  read -p "Choose number: " number_chosen
+  read -p "Choose your Helper : " number_chosen
 
   case $number_chosen in
     1)
