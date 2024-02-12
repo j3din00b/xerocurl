@@ -46,7 +46,7 @@ echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xer
 echo
 echo "Installing & Starting the Toolkit..."
 echo
-sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli
+sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli -m
 ;;
 
 n)
@@ -85,7 +85,7 @@ if [[ $aur_helper == "NONE" ]]; then
       sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
       echo
       echo "Launching toolkit..."
-      clear && exec /usr/bin/xero-cli
+      clear && exec /usr/bin/xero-cli -m
     ;;
     2)
       echo
@@ -104,7 +104,7 @@ if [[ $aur_helper == "NONE" ]]; then
       sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
       echo
       echo "Launching toolkit..."
-      clear && exec /usr/bin/xero-cli
+      clear && exec /usr/bin/xero-cli -m
     ;;
     *)
       echo "Invalid option"
