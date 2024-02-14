@@ -29,7 +29,7 @@ for i in ${aur_helpers[@]}; do
 echo "AUR Helper detected, shall we proceed ?"
 echo ""
 echo "y. Yes Please."
-echo "n. No, thank you."
+echo "n. No thank you."
 echo ""
 echo "Type y or n to continue."
 echo ""
