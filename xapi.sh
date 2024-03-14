@@ -43,6 +43,7 @@ echo
 echo "Adding XeroLinux Repository..."
 echo
 echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
+sudo sed -i '/^\s*#\s*\[multilib\]/,/^$/ s/^#//' /etc/pacman.conf
 echo
 echo "Installing & Starting the Toolkit..."
 echo
@@ -78,6 +79,7 @@ if [[ $aur_helper == "NONE" ]]; then
       echo
       sudo cp /etc/pacman.conf /etc/pacman.conf.backup && \
       echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
+      sudo sed -i '/^\s*#\s*\[multilib\]/,/^$/ s/^#//' /etc/pacman.conf
       sleep 2
       echo
       echo "Installing YaY & Toolkit..."
@@ -97,6 +99,7 @@ if [[ $aur_helper == "NONE" ]]; then
       echo
       sudo cp /etc/pacman.conf /etc/pacman.conf.backup && \
       echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
+      sudo sed -i '/^\s*#\s*\[multilib\]/,/^$/ s/^#//' /etc/pacman.conf
       sleep 2
       echo
       echo "Installing Paru & Toolkit..."
