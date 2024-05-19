@@ -6,8 +6,8 @@ done
 
 ##################################################################################################################
 # Written to be used on 64 bits computers
-# Author 	: 	DarkXero
-# Website 	: 	http://xerolinux.xyz
+# Author   :   DarkXero
+# Website  :   http://xerolinux.xyz
 ##################################################################################################################
 clear
 tput setaf 5
@@ -21,96 +21,93 @@ tput sgr0
 
 aur_helpers=("yay" "paru")
 echo
+
+# Function to add the XeroLinux repository if not already added
+add_xerolinux_repo() {
+    if ! grep -q "\[xerolinux\]" /etc/pacman.conf; then
+        echo "Adding XeroLinux Repository..."
+        echo
+        echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
+        sudo sed -i '/^\s*#\s*\[multilib\]/,/^$/ s/^#//' /etc/pacman.conf
+    else
+        echo
+        echo "XeroLinux Repository already added."
+        echo
+    fi
+}
+
+# Function to install and start the toolkit
+install_and_start_toolkit() {
+    sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli -m
+}
+
 aur_helper="NONE"
-for i in ${aur_helpers[@]}; do
-  if command -v $i; then
-    aur_helper="$i"
-    echo
-echo "AUR Helper detected, shall we proceed ?"
-echo ""
-echo "y. Yes Please."
-echo "n. No thank you."
-echo ""
-echo "Type y or n to continue."
-echo ""
+for helper in "${aur_helpers[@]}"; do
+    if command -v "$helper" &> /dev/null; then
+        aur_helper="$helper"
+        echo
+        echo "AUR Helper detected, shall we proceed?"
+        echo ""
+        echo "y. Yes Please."
+        echo "n. No thank you."
+        echo ""
+        echo "Type y or n to continue."
+        echo ""
 
-read CHOICE
+        read -rp "Enter your choice: " CHOICE
 
-case $CHOICE in
-
-y)
-echo
-echo "Adding XeroLinux Repository..."
-echo
-echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
-sudo sed -i '/^\s*#\s*\[multilib\]/,/^$/ s/^#//' /etc/pacman.conf
-echo
-echo "Installing & Starting the Toolkit..."
-echo
-sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli -m
-;;
-
-n)
-echo
-exit 0
-;;
-
-esac
-  fi
+        case $CHOICE in
+            y)
+                add_xerolinux_repo
+                install_and_start_toolkit
+                ;;
+            n)
+                exit 0
+                ;;
+            *)
+                echo "Invalid choice."
+                exit 1
+                ;;
+        esac
+    fi
 done
 
 if [[ $aur_helper == "NONE" ]]; then
-  echo
-  echo "No AUR Helper detected, required by the toolkit."
-  echo ""
-  echo "1 - Yay + Toolkit"
-  echo "2 - Paru + Toolkit"
-  echo ""
-  read -p "Choose your Helper : " number_chosen
+    echo
+    echo "No AUR Helper detected, required by the toolkit."
+    echo ""
+    echo "1 - Yay + Toolkit (Not the best)"
+    echo "2 - Paru + Toolkit (Fast/Recommended)"
+    echo ""
+    read -rp "Choose your Helper: " number_chosen
 
-  case $number_chosen in
-    1)
-      echo
-      echo "###########################################"
-      echo "           You Have Selected YaY           "
-      echo "###########################################"
-      echo
-      echo "Adding XeroLinux Repository..."
-      echo
-      sudo cp /etc/pacman.conf /etc/pacman.conf.backup && \
-      echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
-      sudo sed -i '/^\s*#\s*\[multilib\]/,/^$/ s/^#//' /etc/pacman.conf
-      sleep 2
-      echo
-      echo "Installing YaY & Toolkit..."
-      echo
-      sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
-      echo
-      echo "Launching toolkit..."
-      clear && exec /usr/bin/xero-cli -m
-    ;;
-    2)
-      echo
-      echo "###########################################"
-      echo "          You Have Selected Paru           "
-      echo "###########################################"
-      echo
-      echo "Adding XeroLinux Repository..."
-      echo
-      sudo cp /etc/pacman.conf /etc/pacman.conf.backup && \
-      echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
-      sudo sed -i '/^\s*#\s*\[multilib\]/,/^$/ s/^#//' /etc/pacman.conf
-      sleep 2
-      echo
-      echo "Installing Paru & Toolkit..."
-      echo
-      sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
-      echo
-      echo "Launching toolkit..."
-      clear && exec /usr/bin/xero-cli -m
-    ;;
-    *)
-      echo "Invalid option"
-    ;;
-  esac
+    case $number_chosen in
+        1)
+            echo
+            echo "###########################################"
+            echo "           You Have Selected YaY           "
+            echo "###########################################"
+            add_xerolinux_repo
+            echo
+            echo "Installing YaY & Toolkit..."
+            echo
+            sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
+            install_and_start_toolkit
+            ;;
+        2)
+            echo
+            echo "###########################################"
+            echo "          You Have Selected Paru           "
+            echo "###########################################"
+            add_xerolinux_repo
+            echo
+            echo "Installing Paru & Toolkit..."
+            echo
+            sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
+            install_and_start_toolkit
+            ;;
+        *)
+            echo "Invalid option."
+            ;;
+    esac
 fi
