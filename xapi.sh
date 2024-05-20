@@ -91,7 +91,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo
             echo "Installing YaY & Toolkit..."
             echo
-            sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
+            sudo pacman -Syy --noconfirm yay-bin gum xlapit-cli && yay -Y --devel --save && yay -Y --gendb
             install_and_start_toolkit
             ;;
         2)
@@ -103,7 +103,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo
             echo "Installing Paru & Toolkit..."
             echo
-            sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
+            sudo pacman -Syy --noconfirm paru-bin gum xlapit-cli && paru --gendb
             install_and_start_toolkit
             ;;
         *)
