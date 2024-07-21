@@ -38,7 +38,7 @@ add_xerolinux_repo() {
 
 # Function to install and start the toolkit
 install_and_start_toolkit() {
-    sudo pacman -Syy --noconfirm xlapit-cli gum inxi && clear && exec /usr/bin/xero-cli -m
+    sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli -m
 }
 
 aur_helper="NONE"
