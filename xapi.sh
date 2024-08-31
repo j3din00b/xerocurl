@@ -51,7 +51,7 @@ while [[ "$rerun_script" == "1" ]]; do
 
     # Wait for user to press ENTER
     read -p "Press ENTER to quit... " # Wait for user input
-    rerun_script="0" # Exit loop after user presses Enter
+    exit 1 # Exit loop after user presses Enter
   else
     # If the distro is compatible, exit the loop
     rerun_script="0"
