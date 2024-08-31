@@ -27,10 +27,7 @@ fi
 
 source /etc/os-release
 
-rerun_script="1" # Initialize a variable to control the loop
-
-while [[ "$rerun_script" == "1" ]]; do
-  if [ "$ID" != "arch" ] && [ "$ID" != "XeroLinux" ]; then
+if [ "$ID" != "arch" ] && [ "$ID" != "XeroLinux" ]; then
     # Display the message with color
     clear           # Clear the terminal window
 
@@ -49,14 +46,10 @@ while [[ "$rerun_script" == "1" ]]; do
     # Reset all attributes
     tput sgr0
 
-    # Wait for user to press ENTER
-    read -p "Press ENTER to quit... " # Wait for user input
-    exit 1 # Exit loop after user presses Enter
-  else
-    # If the distro is compatible, exit the loop
-    rerun_script="0"
-  fi
-done
+    # Wait for user to press ENTER and then exit
+    read -p "Press ENTER to quit... "
+    exit 1
+fi
 
 aur_helpers=("yay" "paru")
 echo
