@@ -67,8 +67,8 @@ add_chaotic_aur() {
 }
 
 # Function to install and start the toolkit
-install_and_start_toolkit() {
-    sudo pacman -Syy --noconfirm xlapit-cli && clear && exec /usr/bin/xero-cli -m
+install_toolkit() {
+    sudo pacman -Syy --noconfirm xlapit-cli
 }
 
 aur_helper="NONE"
@@ -90,7 +90,7 @@ for helper in "${aur_helpers[@]}"; do
             y)
                 add_xerolinux_repo
                 add_chaotic_aur
-                install_and_start_toolkit
+                install_toolki
                 ;;
             n)
                 exit 0
@@ -123,7 +123,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo "Installing YaY & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
-            install_and_start_toolkit
+            install_toolki
             ;;
         2)
             echo
@@ -135,7 +135,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo "Installing Paru & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
-            install_and_start_toolkit
+            install_toolki
             ;;
         *)
             echo "Invalid option."
