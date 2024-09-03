@@ -25,14 +25,44 @@ echo
 # Function to add the XeroLinux repository if not already added
 add_xerolinux_repo() {
     if ! grep -q "\[xerolinux\]" /etc/pacman.conf; then
+        echo
         echo "Adding XeroLinux Repository..."
+        sleep 3
         echo
         echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
         sudo sed -i '/^\s*#\s*\[multilib\]/,/^$/ s/^#//' /etc/pacman.conf
+        echo
+        echo "XeroLinux Repository added!"
+        sleep 3
     else
         echo
         echo "XeroLinux Repository already added."
         echo
+        sleep 3
+    fi
+}
+
+# Function to add the Chaotic-AUR repository
+add_chaotic_aur() {
+    if ! grep -q "\[chaotic-aur\]" /etc/pacman.conf; then
+        echo
+        echo "Adding Chaotic-AUR Repository..."
+        sleep 3
+        echo
+        sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+        sudo pacman-key --lsign-key 3056513887B78AEB
+        sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+        sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+        echo -e '\n[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist' | sudo tee -a /etc/pacman.conf
+        echo
+        echo "Chaotic-AUR Repository added!"
+        echo
+        sleep 3
+    else
+        echo
+        echo "Chaotic-AUR Repository already added."
+        echo
+        sleep 3
     fi
 }
 
@@ -59,6 +89,7 @@ for helper in "${aur_helpers[@]}"; do
         case $CHOICE in
             y)
                 add_xerolinux_repo
+                add_chaotic_aur
                 install_and_start_toolkit
                 ;;
             n)
