@@ -90,7 +90,7 @@ for helper in "${aur_helpers[@]}"; do
             y)
                 add_xerolinux_repo
                 add_chaotic_aur
-                install_toolki
+                install_toolkit
                 ;;
             n)
                 exit 0
@@ -123,7 +123,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo "Installing YaY & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
-            install_toolki
+            install_toolkit
             ;;
         2)
             echo
@@ -135,7 +135,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo "Installing Paru & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
-            install_toolki
+            install_toolkit
             ;;
         *)
             echo "Invalid option."
