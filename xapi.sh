@@ -14,7 +14,7 @@ tput setaf 5
 echo "#######################################################################"
 echo "#          Welcome to XeroLinux Arch Toolkit install script.          #"
 echo "#                                                                     #"
-echo "# This will add the XeroLinux repository required to install the tool #"
+echo "#   This will add the Required XeroLinux & Chaotic-AUR repositories   #"
 echo "#     AUR helper and more. Just close window if you do not agree.     #"
 echo "#######################################################################"
 tput sgr0
@@ -26,7 +26,7 @@ echo
 add_xerolinux_repo() {
     if ! grep -q "\[xerolinux\]" /etc/pacman.conf; then
         echo
-        echo "Adding XeroLinux Repository..."
+        echo "Adding The XeroLinux Repository..."
         sleep 3
         echo
         echo -e '\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/$repo/$arch' | sudo tee -a /etc/pacman.conf
@@ -46,7 +46,7 @@ add_xerolinux_repo() {
 add_chaotic_aur() {
     if ! grep -q "\[chaotic-aur\]" /etc/pacman.conf; then
         echo
-        echo "Adding Chaotic-AUR Repository..."
+        echo "Adding The Chaotic-AUR Repository..."
         sleep 3
         echo
         sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
@@ -59,7 +59,6 @@ add_chaotic_aur() {
         echo
         sleep 3
     else
-        echo
         echo "Chaotic-AUR Repository already added."
         echo
         sleep 3
