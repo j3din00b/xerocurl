@@ -9,7 +9,7 @@ To update the contents of this repository, please do the following:
 **- Install Rust**  (select option 2)
 ```bash
 sudo pacman -S rustup cargo
-rustup default stable
+rustup default nightly
 ```
 
 **- Compile Binary & Pull down Scripts**
