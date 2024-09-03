@@ -75,12 +75,7 @@ for helper in "${aur_helpers[@]}"; do
     if command -v "$helper" &> /dev/null; then
         aur_helper="$helper"
         echo
-        echo "AUR Helper detected, shall we proceed?"
-        echo ""
-        echo "y. Yes Please."
-        echo "n. No thank you."
-        echo ""
-        echo "Type y or n to continue."
+        echo "AUR Helper detected, shall we proceed? (y/n)"
         echo ""
 
         read -rp "Enter your choice: " CHOICE
@@ -104,10 +99,10 @@ done
 
 if [[ $aur_helper == "NONE" ]]; then
     echo
-    echo "No AUR Helper detected, required by the toolkit."
+    echo "No AUR-Helper detected, please choose one."
     echo ""
-    echo "1 - Yay + Toolkit"
-    echo "2 - Paru + Toolkit"
+    echo "1 - Yay  (Written in Go-lang)"
+    echo "2 - Paru (Written in Rust-lang)"
     echo ""
     read -rp "Choose your Helper: " number_chosen
 
@@ -118,7 +113,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo "           You Have Selected YaY           "
             echo "###########################################"
             add_xerolinux_repo
-            echo
+            add_chaotic_aur
             echo "Installing YaY & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
@@ -130,7 +125,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo "          You Have Selected Paru           "
             echo "###########################################"
             add_xerolinux_repo
-            echo
+            add_chaotic_aur
             echo "Installing Paru & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
