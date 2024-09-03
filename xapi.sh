@@ -15,7 +15,7 @@ echo "#######################################################################"
 echo "#          Welcome to XeroLinux Arch Toolkit install script.          #"
 echo "#                                                                     #"
 echo "#   This will add the Required XeroLinux & Chaotic-AUR repositories   #"
-echo "#     AUR helper and more. Just close window if you do not agree.     #"
+echo "#        AUR helper and more. Just CTRL+C if you do not agree.        #"
 echo "#######################################################################"
 tput sgr0
 
