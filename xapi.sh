@@ -65,6 +65,16 @@ add_chaotic_aur() {
     fi
 }
 
+# Function to update pacman.conf under Misc options
+update_pacman_conf() {
+    echo
+    echo "Updating Pacman Options..."
+    echo
+    sudo sed -i '/^# Misc options/,/ParallelDownloads = [0-9]*/c\# Misc options\nColor\nILoveCandy\nCheckSpace\nVerbosePkgLists\nDisableDownloadTimeout\nParallelDownloads = 10' /etc/pacman.conf
+    echo
+    echo "Updated /etc/pacman.conf under # Misc options"
+}
+
 # Function to install and start the toolkit
 install_toolkit() {
     sudo pacman -Syy --noconfirm xlapit-cli
@@ -84,6 +94,7 @@ for helper in "${aur_helpers[@]}"; do
             y)
                 add_xerolinux_repo
                 add_chaotic_aur
+                update_pacman_conf
                 install_toolkit
                 ;;
             n)
@@ -114,6 +125,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo "###########################################"
             add_xerolinux_repo
             add_chaotic_aur
+            update_pacman_conf
             echo "Installing YaY & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
@@ -126,6 +138,7 @@ if [[ $aur_helper == "NONE" ]]; then
             echo "###########################################"
             add_xerolinux_repo
             add_chaotic_aur
+            update_pacman_conf
             echo "Installing Paru & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
