@@ -128,7 +128,7 @@ if [[ $aur_helper == "NONE" ]]; then
             update_pacman_conf
             echo "Installing YaY & Toolkit..."
             echo
-            sudo pacman -Syy --noconfirm yay-bin xlapit-cli && yay -Y --devel --save && yay -Y --gendb
+            sudo pacman -Syy --noconfirm yay-git xlapit-cli && yay -Y --devel --save && yay -Y --gendb
             install_toolkit
             ;;
         2)
@@ -141,7 +141,7 @@ if [[ $aur_helper == "NONE" ]]; then
             update_pacman_conf
             echo "Installing Paru & Toolkit..."
             echo
-            sudo pacman -Syy --noconfirm paru-bin xlapit-cli && paru --gendb
+            sudo pacman -Syy --noconfirm paru-git xlapit-cli && paru --gendb
             install_toolkit
             ;;
         *)
