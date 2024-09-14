@@ -126,6 +126,7 @@ if [[ $aur_helper == "NONE" ]]; then
             add_xerolinux_repo
             add_chaotic_aur
             update_pacman_conf
+            echo
             echo "Installing YaY & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm yay-git xlapit-cli && yay -Y --devel --save && yay -Y --gendb
@@ -139,6 +140,7 @@ if [[ $aur_helper == "NONE" ]]; then
             add_xerolinux_repo
             add_chaotic_aur
             update_pacman_conf
+            echo
             echo "Installing Paru & Toolkit..."
             echo
             sudo pacman -Syy --noconfirm paru-git xlapit-cli && paru --gendb
