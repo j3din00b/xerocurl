@@ -70,7 +70,7 @@ update_pacman_conf() {
     echo
     echo "Updating Pacman Options..."
     echo
-    sudo sed -i '/^# Misc options/,/ParallelDownloads = [0-9]*/c\# Misc options\nColor\nILoveCandy\nCheckSpace\nVerbosePkgLists\nDisableDownloadTimeout\nParallelDownloads = 10' /etc/pacman.conf
+    sudo sed -i '/^# Misc options/,/ParallelDownloads = [0-9]*/c\# Misc options\nColor\nILoveCandy\nCheckSpace\n#DisableSandbox\nDownloadUser = alpm\nDisableDownloadTimeout\nParallelDownloads = 10' /etc/pacman.conf
     echo
     echo "Updated /etc/pacman.conf under # Misc options"
 }
